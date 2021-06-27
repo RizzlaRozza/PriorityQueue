@@ -47,7 +47,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
     
     @Override
     public void remove(){
-       dequeue();
+       //dequeue();
     }
     
 
@@ -80,7 +80,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
    
 
   
-   public T dequeue() {
+   public void dequeue()  throws QueueUnderflowException {
    // Throws PriQUnderflowException if this priority queue is empty;
    // otherwise, removes item with highest priority from this 
    // priority queue and returns it.
@@ -100,10 +100,9 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
               elements[j] = elements[j+1];
           }
          numElements--;
-         return tempHighest;
+         //return tempHighest;
        }
-       else
-         throw new QueueUnderflowException("dequeue attempted on an empty priority queue.");
+
    } 
   
    public int size() {
