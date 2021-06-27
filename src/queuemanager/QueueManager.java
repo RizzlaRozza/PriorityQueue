@@ -1,11 +1,18 @@
 package queuemanager;
 
+/**
+ * @author: Rory Cunningham (18005152)
+ * Date Created: 01/06/2021
+ * Date Modified: 27/06/2021
+ * Version: 1.4
+ * 
+ * Code below is a starting point provided for assessment 1 of Software 
+ * Construction class, with only minor modifications made connect the other 
+ * queue implementations.
+ */
+
 import java.util.Scanner;
 
-/**
- * Simple text based driver program for the PriorityQueue ADT and its different
- * implementations.
- */
 public class QueueManager {
 
     public static void main(String[] args) {
@@ -36,13 +43,15 @@ public class QueueManager {
                 System.out.println("Using an unsorted array.");
                 break;
             case "sl":
-//                q = new SortedLinkedListPriorityQueue<>(8);
+                q = new SortedLinkedListPriorityQueue<>();
                 System.out.println("Using a Sorted Linked List.");
                 break;
             case "ul":
-
+                q = new UnsortedLinkedListPriorityQueue<>();
+                System.out.println("Using a Sorted Linked List.");
+                break;
             case "h":
-
+                // come back to this later
             default:
                 q = new SortedArrayPriorityQueue<>(8);
                 System.out.println("Invalid choice, using sorted array.");
