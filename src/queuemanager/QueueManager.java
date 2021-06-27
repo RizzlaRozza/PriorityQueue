@@ -39,8 +39,8 @@ public class QueueManager {
                 System.out.println("Using a sorted array.");
                 break;
             case "ua":
-                q = new UnsortedArrayPriorityQueue<>(8);
-                System.out.println("Using an unsorted array.");
+                q = new SortedLinkedListPriorityQueue<>();
+                System.out.println("Using a Sorted Linked List.");
                 break;
             case "sl":
                 q = new SortedLinkedListPriorityQueue<>();
@@ -48,13 +48,15 @@ public class QueueManager {
                 break;
             case "ul":
                 q = new UnsortedLinkedListPriorityQueue<>();
-                System.out.println("Using a Sorted Linked List.");
+                System.out.println("Using an unsorted linked list.");
                 break;
             case "h":
                 // come back to this later
+                q = new SortedLinkedListPriorityQueue<>();
+                System.out.println("Using a Sorted Linked List.");
             default:
-                q = new SortedArrayPriorityQueue<>(8);
-                System.out.println("Invalid choice, using sorted array.");
+                q = new SortedLinkedListPriorityQueue<>();
+                System.out.println("Using a Sorted Linked List.");
                 break;
         }
 

@@ -17,15 +17,13 @@ package queuemanager;
 public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
 
     
-    protected LLNode<T> previous;   // node preceding location
-    protected int numElements = 0; // number of elements in this queue
-    private int tailIndex;
 
     /**
      * variable "head" stores list item at the head of the queue
      */    
     private PriorityItem<T> head;
     private PriorityItem<T> tail;
+    private int tailIndex;
     
     
     /**
@@ -66,18 +64,17 @@ public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
         // find the first Item in the queue which value is lower than x (or the tail)
         else{
              PriorityItem existing;
-            for (existing = head; existing.getPriorityItem() != null && priority >= existing.getPriorityItem().getPriority(); existing = existing.getPriorityItem());
+            for (existing = head; existing.getNextPriorityItem() != null && priority >= existing.getNextPriorityItem().getPriority(); existing = existing.getNextPriorityItem());
             // remove duplicates
-            if (priority != existing.getPriorityItem().getPriority()) {
-                addNewItem.setPriorityItem(existing.getPriorityItem());
-                existing.setPriorityItem(addNewItem);
+            if (priority != existing.getNextPriorityItem().getPriority()) {
+                addNewItem.setNextPriorityItem(existing.getNextPriorityItem());
+                existing.setNextPriorityItem(addNewItem);
             }
              
         }
     }
     
 
-        
     @Override
     public void remove() throws QueueUnderflowException {
         // Throws PriQUnderflowException if this priority queue is empty;
@@ -87,45 +84,42 @@ public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
             throw new QueueUnderflowException();
         } else {
             // if there is no item after head set head to null else focus on next item in queue
-            if(head.getPriorityItem() == null) {
+            if(head.getNextPriorityItem() == null) {
                 head = null;
             }
             else {
-                head = new PriorityItem<T>(head.getPriorityItem().getItem(), head.getPriorityItem().getPriority(), head.getPriorityItem().getPriorityItem());
+                head = new PriorityItem<T>(head.getNextPriorityItem().getItem(), head.getNextPriorityItem().getPriority(), head.getNextPriorityItem().getNextPriorityItem());
             }         
         }
-    }
-
-    public int size() {
-        // Returns the number of elements on this priority queue. 
-        return numElements;
     }
 
     /**
      * @return Returns true if this priority queue is empty; otherwise, returns false.
      */
+    @Override
     public boolean isEmpty() {
         return (head == null);
     }
 
-    public boolean isFull() {
-        // This priority queue is unbounded so always returns false.
-        return false;
-    }
-
+    // error here to print queue
+    @Override
     public String toString() {
-        // Returns a nicely formatted string that represents this priority queue.
-        String result = "";
-        if (isEmpty()) {
-            return "Queue is empty.";
+        String result = "[";
+        for (PriorityItem<T> node = head; node != null; node = node.getNextPriorityItem())
+        {
+            if (node != head)
+            {
+                result += ", ";
+            }
+            result = result + "(" + node.getItem() + " ," + node.getPriority() + ")";
         }
-        LLNode<T> currNode = front;
+        result = result + "]";
 
-        while (currNode != null) {
-            result += currNode.getInfo().toString() + ", ";
-            currNode = currNode.getLink();
-        }
         return result;
+        
+        
+        
+
     }
 }
 

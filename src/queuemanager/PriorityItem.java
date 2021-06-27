@@ -10,7 +10,7 @@ public class PriorityItem<T> {
     private T item;
     private final int priority;
     
-    private PriorityItem<T> next;
+    private PriorityItem<T> nextPriorityItem;
     
     public PriorityItem(T item, int priority) {
         this.item = item;
@@ -21,7 +21,7 @@ public class PriorityItem<T> {
         this.item = item;
         this.priority = priority;
         // overload construstor to include the 'next' variable
-        this.next = next;
+        this.nextPriorityItem = nextPriorityItem;
     }
 
     public T getItem() {
@@ -32,11 +32,11 @@ public class PriorityItem<T> {
         return priority;
     }
     
-    public PriorityItem<T> getPriorityItem() {
-        return next;
+    public PriorityItem<T> getNextPriorityItem() {
+        return nextPriorityItem;
     }
     
-    public void setPriorityItem(T item) {
+    public void setNextPriorityItem(T item) {
         this.item = item;
     }
 
